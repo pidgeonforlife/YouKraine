@@ -4,12 +4,14 @@ import { useState } from 'react'
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false)
+    const [isSignUp, setIsSignUp] = useState(true)
 
     const authToken = false
 
     const handleClick = () => {
         console.log('Click!')
         setShowModal(true)
+        setIsSignUp(true)
     }
 
     return (
@@ -23,7 +25,7 @@ const Home = () => {
                 <a>Already a member? Login</a>
 
                 {showModal && (
-                    <AuthModal setShowModal={setShowModal}/>
+                    <AuthModal setShowModal={setShowModal} setIsSignUp={setIsSignUp} isSignUp={isSignUp}/>
                 )}
             </div>
         </div>
