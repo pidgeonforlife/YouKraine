@@ -1,12 +1,14 @@
 import icon from '../images/icon.png'
 import logo from '../images/logo.png'
 
-const Nav = ({ minimal, authToken, setShowModal, showModal }) => {
+const Nav = ({ minimal, setShowModal, showModal, setIsSignUp }) => {
 
   const handleClick = () => {
       setShowModal(true)
-  }  
-
+      setIsSignUp(false)
+  }
+  
+  const authToken = true
   return (
     <nav>
       <div className='logo-container'>
