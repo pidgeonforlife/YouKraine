@@ -1,0 +1,9 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 8000
+  },
+  "mongodb": {
+    "uri": "mongodb+srv://yongseokkers:YHacks123@cluster0.zv911.mongodb.net/Cluster0?retryWrites=true&w=majority"
+  }
+}
