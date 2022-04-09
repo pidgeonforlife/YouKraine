@@ -63,14 +63,6 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp }) => {
                     required={true}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="password"
-                    required={true}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
                 {isSignUp && <input
                     type="password-check"
                     id="password-check"
