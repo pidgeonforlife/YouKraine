@@ -1,7 +1,7 @@
 import icon from '../images/icon.png'
 import logo from '../images/logo.png'
 
-const Nav = ({ minimal, authToken, setShowModal }) => {
+const Nav = ({ minimal, authToken, setShowModal, showModal }) => {
 
   const handleClick = () => {
       setShowModal(true)
@@ -18,6 +18,7 @@ const Nav = ({ minimal, authToken, setShowModal }) => {
       {!authToken && !minimal && <button 
         className='nav-button'
         onClick={handleClick}
+        disabled={showModal}
       >Log in</button>}
     </nav>
   )
