@@ -16,10 +16,11 @@ const Home = () => {
         <div className='overlay'>
             <Nav minimal={false} setShowModal={setShowModal} showModal={showModal}/>
             <div className='home'>
-                <h1>Find Humanitarian Aid</h1>
+                <h1>SUPPORT WITH A SWIPE</h1>
                 <button className='primary-button' onClick={handleClick}>
                     {authToken ? 'Sign Out' : 'Create Account'}
                 </button>
+                <a>Already a member? Login</a>
 
                 {showModal && (
                     <AuthModal setShowModal={setShowModal}/>
