@@ -20,10 +20,11 @@ app.get('/', (req, res) => {
 
 app.post('/signup', async (req, res) => {
   const client = new MongoClient(URI)
-  // console.log(req.body)
   const { email, password } = req.body
   const generatedUserId = uuidv4()
   const hashedPassword = await bcrypt.hash(password, 10)
+
+  console.log(req.body)
 
   // Send over to database
   try {
@@ -50,11 +51,36 @@ app.post('/signup', async (req, res) => {
     })
 
     res.status(201).json({ token, userId: generatedUserId, email: sanitizedEmail })
-    
+
   } catch (err) {
     console.log(err)
   }
 
+})
+
+app.post('/login', async (req, res) => {
+  const client = new MongoClient(URI)
+  const { email, password } = req.body
+
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const users = database.collection('users')
+
+    const user = await users.findOne({ email })
+
+    const correctPassword = await bcrypt.compare(password, user.hashed_password)
+
+    if (user && correctPassword) {
+      const token = jwt.sign(user, email, {
+        expiresIn: 60 * 48, // Expires in 48hrs
+      })
+      res.status(201).json({ token, userId: user.user_id, email })
+    }
+    res.status(400).send('Invalid Credentials')
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 app.get('/users', async (req, res) => {
