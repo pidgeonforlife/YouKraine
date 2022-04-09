@@ -1,6 +1,3 @@
-import icon from '../images/icon.png'
-import logo from '../images/logo.png'
-
 const Nav = ({ minimal, setShowModal, showModal, setIsSignUp }) => {
 
   const handleClick = () => {
@@ -12,9 +9,7 @@ const Nav = ({ minimal, setShowModal, showModal, setIsSignUp }) => {
   return (
     <nav>
       <div className='logo-container'>
-        <img className='logo'
-          src={minimal ? icon : logo}
-          alt='logo' />
+        <img className='logo' src='/images/YouKraine.png' />
       </div>
 
       {!authToken && !minimal && <button 

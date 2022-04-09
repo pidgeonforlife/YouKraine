@@ -37,7 +37,7 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp }) => {
         <div className="auth-modal">
             <div className="close-icon" onClick={handleClick}>X</div>
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
-            <p>By clicking, suck it.</p>
+            <p>Let's get you started.</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
@@ -46,6 +46,14 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp }) => {
                     placeholder="email"
                     required={true}
                     onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="password"
+                    required={true}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <input
                     type="password"
@@ -67,8 +75,6 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp }) => {
                 <p>{error}</p>
 
             </form>
-            <hr />
-            <h2>GET THE APP</h2>
         </div>
     )
 }
