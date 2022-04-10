@@ -30,6 +30,7 @@ const db = [
 const Dashboard = () => {
 
     const [user, setUser] = useState(null)
+    const [genderedUsers, setGenderedUsers] = useState(null)
     const [ cookies, setCookie, removeCookie ] = useCookies([user])
 
     const userId = cookies.userId
@@ -44,12 +45,24 @@ const Dashboard = () => {
         }
     }
 
+    const getGenderedUsers = async () => {
+        try {
+            const response = await axios.get('http://localhost:8000/gendered-users', {
+                params: {gender: user?.gender_interest}
+            })
+            setGenderedUsers(response.data)
+        } catch (error){
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getUser()
-    }, [])
+        getGenderedUsers()
+    }, [user, genderedUsers])
 
-    console.log(user)
-    getUser()
+    console.log(user, user)
+    console.log('gendered users', genderedUsers)
 
     const characters = db
     const [lastDirection, setLastDirection] = useState()
