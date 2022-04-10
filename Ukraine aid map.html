@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ukraine Humanitarian Aid Map</title>
+    <script type="text/javascript" src="hwy_cords.json"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js%22%3E></script> -->
+    <style>
+
+#map {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFwOrG7_5TDJ1--cYZ2YiMZyxILDOYe34&callback=initMap&v=weekly&channel=2"
+      async
+    ></script>
+
+    <script>
+        
+        var lat = [50.444475, 50.449237, 50.442057, 50.455535, 50.445304, 50.432273]
+        var lon = [30.498783, 30.503611, 30.514467, 30.521796, 30.524906, 30.517587]
+
+
+        function initMap() {
+
+            const myLatLng = { lat: lat[0], lng: lon[0]};
+            const myLatLng2 = { lat: lat[1], lng: lon[1]};
+            const myLatLng3 = { lat: lat[2], lng: lon[2]};
+            const myLatLng4 = { lat: lat[3], lng: lon[3]};
+            const myLatLng5 = { lat: lat[4], lng: lon[4]};
+            const myLatLng6 = { lat: lat[5], lng: lon[5]};
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: myLatLng3,
+         });
+
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "Hello World!",
+        });
+
+        new google.maps.Marker({
+            position: myLatLng2,
+            map,
+            title: "Hello World!",
+        });
+
+        new google.maps.Marker({
+            position: myLatLng3,
+            map,
+            title: "Hello World!",
+        });
+
+        new google.maps.Marker({
+            position: myLatLng4,
+            map,
+            title: "Hello World!",
+        });
+
+        new google.maps.Marker({
+            position: myLatLng5,
+            map,
+            title: "Hello World!",
+        });
+
+        new google.maps.Marker({
+            position: myLatLng6,
+            map,
+            title: "Hello World!",
+        });
+}
+    </script>
+  </body>
+</html>
