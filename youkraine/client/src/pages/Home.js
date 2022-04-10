@@ -6,22 +6,21 @@ import { useCookies } from 'react-cookie'
 const Home = () => {
     const [showModal, setShowModal] = useState(false)
     const [isSignUp, setIsSignUp] = useState(true)
-    const [cookies, setCookie, removeCookie] = useCookie(['user'])
+    const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
-    const authToken = cookie.AuthToken
+    const authToken = cookies.AuthToken
 
     const handleClick = () => {
 
         if (authToken) {
             removeCookie('UserId', cookies.UserId)
             removeCookie('AuthToken', cookies.AuthToken)
-            windows.location.reload()
+            window.location.reload()
             return
         }
         console.log('Click!')
         setShowModal(true)
         setIsSignUp(true)
-
     }
 
     return (

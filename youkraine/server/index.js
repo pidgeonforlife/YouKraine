@@ -1,5 +1,5 @@
-const config = require('config') 
-const express = require('express') 
+const config = require('config')
+const express = require('express')
 const { MongoClient } = require('mongodb')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
@@ -14,10 +14,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// Default
 app.get('/', (req, res) => {
   res.json('Hello to my app!')
 })
 
+// Sign up to the database
 app.post('/signup', async (req, res) => {
   const client = new MongoClient(URI)
   const { email, password } = req.body
@@ -54,8 +56,9 @@ app.post('/signup', async (req, res) => {
 
   } catch (err) {
     console.log(err)
+  } finally {
+    await client.close()
   }
-
 })
 
 app.post('/login', async (req, res) => {
@@ -80,6 +83,8 @@ app.post('/login', async (req, res) => {
     res.status(400).send('Invalid Credentials')
   } catch (err) {
     console.log(err)
+  } finally {
+    await client.close()
   }
 })
 
@@ -93,8 +98,8 @@ app.get('/user', async (req, res) => {
     await client.connect()
     const database = client.db('app-data')
     const users = database.collection('users')
-    
-    const query = { user_id: userId}
+
+    const query = { user_id: userId }
     const user = await users.findOne(query)
     res.send(user)
   } finally {
@@ -112,18 +117,17 @@ app.get('/users', async (req, res) => {
     const users = database.collection('users')
 
     const pipeline =
-        [
-          {
-            '$match': {
-              'user_id': {
-                '$in': userIds
-              }
+      [
+        {
+          '$match': {
+            'user_id': {
+              '$in': userIds
             }
           }
-        ]
-      const foundUsers = await users.aggregate(pipeline).toArray()
-      res.send(foundUsers)
-
+        }
+      ]
+    const foundUsers = await users.aggregate(pipeline).toArray()
+    res.send(foundUsers)
   } finally {
     await client.close()
   }
@@ -139,7 +143,7 @@ app.get('/gendered-users', async (req, res) => {
     await client.connect()
     const database = client.db('app-data')
     const users = database.collection('users')
-    const query = { gender_identity: {$eq : gender} }
+    const query = { gender_identity: { $eq: gender } }
     const foundUsers = await users.find(query).toArray()
 
     res.send(foundUsers)
@@ -180,7 +184,7 @@ app.put('/user', async (req, res) => {
 
 })
 
-app.put('/addmatch', (req, res) => {
+app.put('/addmatch', async (req, res) => {
   const client = new MongoClient(URI)
   const { userId, matchedUserId } = req.body
 
@@ -191,7 +195,7 @@ app.put('/addmatch', (req, res) => {
 
     const query = { user_id: userId }
     const updateDocument = {
-      $push: { matches: {user_id: matchedUserId}},
+      $push: { matches: { user_id: matchedUserId } },
     }
 
     const user = await users.updateOne(query, updateDocument)
@@ -202,14 +206,14 @@ app.put('/addmatch', (req, res) => {
   }
 })
 
-app.get('/messages', async (req, res)=> {
+app.get('/messages', async (req, res) => {
   const client = new MongoClient(URI)
   const { userId, correspondingUserId } = req.query
   try {
     await client.connect()
     const database = client.db('app-data')
     const messages = database.collection('messages')
-  
+
     const query = {
       from_userId: userId, to_userId: correspondingUserId
     }
@@ -220,7 +224,7 @@ app.get('/messages', async (req, res)=> {
   }
 })
 
-app.post('message', async (req, res) => {
+app.post('/message', async (req, res) => {
   const client = new MongoClient(URI)
   const message = req.body.message
 
