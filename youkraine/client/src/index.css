@@ -145,3 +145,209 @@
   margin-bottom: 10px;
   font-weight: 500;
 }
+
+.onBoarding input {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  margin-left: 5px;
+}
+
+.onBoarding label, form {
+  margin-left: 6px;
+}
+
+.onboardingTitle {
+  display: flex;
+  flex-direction: row;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  gap: 5px;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.onboardingTitle img {
+  width: 30px;
+  height: 30px;
+}
+
+.onBoarding {
+  background-color: #F5FCFF;
+  height: 100vh;
+}
+
+.birthdayForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.onboardingForm {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+
+#dob_day {
+  width: 90px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+#dob_month {
+  width: 90px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+#dob_year {
+  width: 150px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+#first_name {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+#about {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+#url {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.statusForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.statusForm input {
+  width: 10px;
+  height: 10px;
+}
+
+.showForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.showForm input {
+  width: 10px;
+  height: 10px;
+
+}
+
+.statusForm label {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: white;
+  border: solid 1px rgb(144,144,144);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.statusForm input[type="radio"] {
+  display: none;
+}
+
+.showForm label {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: white;
+  border: solid 1px rgb(144,144,144);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.showForm input[type="radio"] {
+  display: none;
+}
+
+.showForm input[type="radio"]:checked + label {
+  border: solid 2px lightblue
+}
+
+.statusForm input[type="radio"]:checked + label {
+  border: solid 2px lightblue
+}
+
+.formButton {
+  width: 150px;
+  height: 10px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-style: normal;
+  font-size: 20px;
+  border-radius: 30px;
+  color: white;
+  background-color: #508AFC;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/*---Chat Container---*/
+
+.chat-container {
+  background-color: white;
+  width: 30%;
+  text-align: left;
+  z-index: 1;
+}
+
+.chat-container .chat-container-header {
+  background: red;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+
+.chat-container .option {
+  border: none;
+  background-color: white;
+  border-bottom: solid 4px red;
+  font-size: 20px;
+  margin: 2px;
+  padding: 10px;
+
+}
+
+.chat-container .profile,
+.chat-container .log-out-icon {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.img-container {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.img-container img {
+  width: 100%;
+}
+
+.chat-display {
+  padding: 20px;
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.chat-input {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}

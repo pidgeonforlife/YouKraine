@@ -41,7 +41,7 @@ const Onboarding = () => {
 
         setFormData((prevState) => ({
             ...prevState,
-            [name] : value
+            [name]: value
         }))
     }
 
@@ -51,13 +51,13 @@ const Onboarding = () => {
         <>
             <Nav
                 minimal={true}
-                setShowModal={() => {}}
+                setShowModal={() => { }}
                 showModal={false}
             />
             <div className='onBoarding'>
                 <h2>CREATE ACCOUNT</h2>
-                
-                <form onSubmit={handleSubmit}>
+
+                <form className='formHelp' onSubmit={handleSubmit}>
                     <section>
                         <label htmlFor='first_name'>First Name</label>
                         <input
@@ -69,76 +69,80 @@ const Onboarding = () => {
                             value={formData.first_name}
                             onChange={handleChange}
                         />
-
                         <label>Birthday</label>
-                        <input
-                            id="dob_day"
-                            type="number"
-                            name="dob_day"
-                            placeholder='DD'
-                            required={true}
-                            value={formData.dob_day}
-                            onChange={handleChange}
-                        />
-                        <input
-                            id="dob_month"
-                            type="number"
-                            name="dob_month"
-                            placeholder='MM'
-                            required={true}
-                            value={formData.dob_month}
-                            onChange={handleChange}
-                        />
-                        <input
-                            id="dob_year"
-                            type="number"
-                            name="dob_year"
-                            placeholder='YYYY'
-                            required={true}
-                            value={formData.dob_year}
-                            onChange={handleChange}
-                        />
+                        <div className='birthdayForm'>
+                            <input
+                                id="dob_day"
+                                type="number"
+                                name="dob_day"
+                                placeholder='DD'
+                                required={true}
+                                value={formData.dob_day}
+                                onChange={handleChange}
+                            />
+                            <input
+                                id="dob_month"
+                                type="number"
+                                name="dob_month"
+                                placeholder='MM'
+                                required={true}
+                                value={formData.dob_month}
+                                onChange={handleChange}
+                            />
+                            <input
+                                id="dob_year"
+                                type="number"
+                                name="dob_year"
+                                placeholder='YYYY'
+                                required={true}
+                                value={formData.dob_year}
+                                onChange={handleChange}
+                            />
+                        </div>
 
                         <label>Status</label>
-                        <label htmlFor='woman-gender-identity'>Refugee</label>
-                        <input
-                            id="woman-gender-identity"
-                            type="radio"
-                            name="gender_identity"
-                            value="man"
-                            onChange={handleChange}
-                            checked={formData.gender_identity === 'man'}
-                        />
-                        <label htmlFor='man-gender-identity'>Supporter</label>
-                        <input
-                            id="man-gender-identity"
-                            type="radio"
-                            name="gender_identity"
-                            value="man"
-                            onChange={handleChange}
-                            checked={formData.gender_identity === 'woman'}
-                        />
+                        <div className='statusForm'>
+                            <label htmlFor='woman-gender-identity'>Refugee</label>
+                            <input
+                                id="man-gender-identity"
+                                type="radio"
+                                name="gender_identity"
+                                value="man"
+                                onChange={handleChange}
+                                checked={formData.gender_identity === 'man'}
+                            />
+                            <label htmlFor='man-gender-identity'>Supporter</label>
+                            <input
+                                id="woman-gender-identity"
+                                type="radio"
+                                name="gender_identity"
+                                value="woman"
+                                onChange={handleChange}
+                                checked={formData.gender_identity === 'woman'}
+                            />
+                        </div>
 
                         <label>Show Me</label>
-                        <label htmlFor='woman-gender-interest'>Refugee</label>
-                        <input
-                            id="woman-gender-interest"
-                            type="radio"
-                            name="gender_interest"
-                            value="man"
-                            onChange={handleChange}
-                            checked={formData.gender_interest === 'man'}
-                        />
-                        <label htmlFor='man-gender-interest'>Supporter</label>
-                        <input
-                            id="man-gender-interest"
-                            type="radio"
-                            name="gender_interest"
-                            value="man"
-                            onChange={handleChange}
-                            checked={formData.gender_interest === 'woman'}
-                        />
-                        <input type="submit"/>
+                        <div className='showForm'>
+                            <label htmlFor='woman-gender-interest'>Refugee</label>
+                            <input
+                                id="woman-gender-interest"
+                                type="radio"
+                                name="gender_interest"
+                                value="woman"
+                                onChange={handleChange}
+                                checked={formData.gender_interest === 'woman'}
+                            />
+                            <label htmlFor='man-gender-interest'>Supporter</label>
+                            <input
+                                id="man-gender-interest"
+                                type="radio"
+                                name="gender_interest"
+                                value="man"
+                                onChange={handleChange}
+                                checked={formData.gender_interest === 'man'}
+                            />
+                        </div>
 
                         <label htmlFor='about'>About Me</label>
                         <input
@@ -151,20 +155,21 @@ const Onboarding = () => {
                             value={formData.about}
                         />
                     </section>
-                    <label htmlFor='man-gender-interest'>Supporter</label>
-                        <input
-                            type="url"
-                            name='url'
-                            id='url'
-                            onChange={handleChange}
-                            required={true}
-                        />
-                        <div className='photo-container'>
-                            {formData.url && <img src={formData.url} alt='profile pic preview' />}
-                        </div>
+                    <input
+                        type="url"
+                        name='url'
+                        id='url'
+                        placeholder='Submit An Image URL'
+                        onChange={handleChange}
+                        required={true}
+                    />
+                    <div className='photo-container'>
+                        {formData.url && <img src={formData.url} alt='profile pic preview' />}
+                    </div>
                     <section>
 
                     </section>
+                    <input className='formButton' type="submit" />
                 </form>
             </div>
         </>
