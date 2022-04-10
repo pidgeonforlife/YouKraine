@@ -4,33 +4,34 @@ import { useCookies } from 'react-cookie'
 import ChatContainer from '../components/ChatContainer'
 import axios from 'axios'
 
-const db = [
-    {
-        name: 'Richard Hendricks',
-        url: './img/richard.jpg'
-    },
-    {
-        name: 'Erlich Bachman',
-        url: './img/erlich.jpg'
-    },
-    {
-        name: 'Monica Hall',
-        url: './img/monica.jpg'
-    },
-    {
-        name: 'Jared Dunn',
-        url: './img/jared.jpg'
-    },
-    {
-        name: 'Dinesh Chugtai',
-        url: './img/dinesh.jpg'
-    }
-]
+// const db = [
+//     {
+//         name: 'Richard Hendricks',
+//         url: './img/richard.jpg'
+//     },
+//     {
+//         name: 'Erlich Bachman',
+//         url: './img/erlich.jpg'
+//     },
+//     {
+//         name: 'Monica Hall',
+//         url: './img/monica.jpg'
+//     },
+//     {
+//         name: 'Jared Dunn',
+//         url: './img/jared.jpg'
+//     },
+//     {
+//         name: 'Dinesh Chugtai',
+//         url: './img/dinesh.jpg'
+//     }
+// ]
 
 const Dashboard = () => {
 
     const [user, setUser] = useState(null)
     const [genderedUsers, setGenderedUsers] = useState(null)
+    const [lastDirection, setLastDirection] = useState()
     const [ cookies, setCookie, removeCookie ] = useCookies([user])
 
     const userId = cookies.userId
@@ -59,22 +60,41 @@ const Dashboard = () => {
     useEffect(() => {
         getUser()
         getGenderedUsers()
-    }, [user, genderedUsers])
+    }, [])
 
-    console.log(user, user)
-    console.log('gendered users', genderedUsers)
 
-    const characters = db
-    const [lastDirection, setLastDirection] = useState()
 
-    const swiped = (direction, nameToDelete) => {
-        console.log('removing: ' + nameToDelete)
+    // const characters = db
+    const updateMatches = async (matchedUserId) => {
+        try {
+            await axios.put('http://localhost:8000/addmatch', {
+                userId,
+                matchedUserId
+            })
+            getUser()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    const swiped = (direction, swipedUserId) => {
+        
+        if (direction === 'right') {
+            updateMatches(swipedUserId)
+        }
         setLastDirection(direction)
     }
 
     const outOfFrame = (name) => {
         console.log(name + ' left the screen!')
     }
+
+    const matchedUserIds = user?.matches.map(({user_id}) => user_id).concat(userId)
+
+    const filteredGenderedUsers = genderedUsers?.filter(
+        genderedUser => !matchedUserIds.includes(genderedUser.user_id)
+    )
 
     return (
         <>
@@ -83,16 +103,16 @@ const Dashboard = () => {
             <div className='swipe-container'>
                 <div className='card-container'>
 
-                    {characters.map((character) =>
+                    {filteredGenderedUsers?.map((genderedUser) =>
                         <TinderCard
                             className='swipe'
-                            key={character.name}
-                            onSwipe={(dir) => swiped(dir, character.name)}
-                            onCardLeftScreen={() => outOfFrame(character.name)}>
+                            key={genderedUser.user_id}
+                            onSwipe={(dir) => swiped(dir, genderedUser.user_id)}
+                            onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}>
                             <div
-                                style={{ backgroundImage: 'url(' + character.url + ')' }}
+                                style={{ backgroundImage: 'url(' + genderedUser.url + ')' }}
                                 className='card'>
-                                <h3>{character.name}</h3>
+                                <h3>{genderedUser.first_name}</h3>
                             </div>
                         </TinderCard>
                     )}
