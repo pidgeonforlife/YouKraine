@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Nav from '../components/Nav'
 
 const Onboarding = () => {
 
@@ -38,15 +37,13 @@ const Onboarding = () => {
 
     return (
         <>
-            <Nav
-                minimal={true}
-                setShowModal={() => {}}
-                showModal={false}
-            />
             <div className='onBoarding'>
-                <h2>CREATE ACCOUNT</h2>
-                
-                <form onSubmit={handleSubmit}>
+                <div className='onboardingTitle'>
+                <p>SIGN UP</p>
+                <img src='/images/ukrainelogo.png' />
+                </div>
+                <div className='onboardingForm'></div>
+                <form className='formHelp' onSubmit={handleSubmit}>
                     <section>
                         <label htmlFor='first_name'>First Name</label>
                         <input
@@ -58,8 +55,8 @@ const Onboarding = () => {
                             value={formData.first_name}
                             onChange={handleChange}
                         />
-
                         <label>Birthday</label>
+                        <div className='birthdayForm'>
                         <input
                             id="dob_day"
                             type="number"
@@ -87,8 +84,10 @@ const Onboarding = () => {
                             value={formData.dob_year}
                             onChange={handleChange}
                         />
+                        </div>
 
                         <label>Status</label>
+                        <div className='statusForm'>
                         <label htmlFor='woman-gender-identity'>Refugee</label>
                         <input
                             id="woman-gender-identity"
@@ -107,8 +106,10 @@ const Onboarding = () => {
                             onChange={handleChange}
                             checked={formData.gender_identity === 'woman'}
                         />
+                        </div>
 
                         <label>Show Me</label>
+                        <div className='showForm'>
                         <label htmlFor='woman-gender-interest'>Refugee</label>
                         <input
                             id="woman-gender-interest"
@@ -127,7 +128,7 @@ const Onboarding = () => {
                             onChange={handleChange}
                             checked={formData.gender_interest === 'woman'}
                         />
-                        <input type="submit"/>
+                        </div>
 
                         <label htmlFor='about'>About Me</label>
                         <input
@@ -140,11 +141,11 @@ const Onboarding = () => {
                             value={formData.about}
                         />
                     </section>
-                    <label htmlFor='man-gender-interest'>Supporter</label>
                         <input
                             type="url"
                             name='url'
                             id='url'
+                            placeholder='Submit An Image URL'
                             onChange={handleChange}
                             required={true}
                         />
@@ -154,6 +155,7 @@ const Onboarding = () => {
                     <section>
 
                     </section>
+                    <input className='formButton' type="submit"/>
                 </form>
             </div>
         </>
