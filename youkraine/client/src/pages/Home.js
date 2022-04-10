@@ -30,7 +30,7 @@ const Home = () => {
             minimal={false} 
             setShowModal={setShowModal} 
             showModal={showModal}
-            setIsnSignUp={setIsSignUp}/>
+            setIsSignUp={setIsSignUp}/>
             <div className='home'>
                 <h1>SUPPORT WITH A SWIPE</h1>
                 <button className='primary-button' onClick={handleClick}>

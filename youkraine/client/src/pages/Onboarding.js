@@ -12,7 +12,6 @@ const Onboarding = () => {
         dob_day: '',
         dob_month: '',
         dob_year: '',
-        show_gender: false,
         gender_identity: 'man',
         gender_interest: 'woman',
         url: '',
@@ -104,9 +103,9 @@ const Onboarding = () => {
                             id="woman-gender-identity"
                             type="radio"
                             name="gender_identity"
-                            value="man"
+                            value="woman"
                             onChange={handleChange}
-                            checked={formData.gender_identity === 'man'}
+                            checked={formData.gender_identity === 'woman'}
                         />
                         <label htmlFor='man-gender-identity'>Supporter</label>
                         <input
@@ -115,7 +114,7 @@ const Onboarding = () => {
                             name="gender_identity"
                             value="man"
                             onChange={handleChange}
-                            checked={formData.gender_identity === 'woman'}
+                            checked={formData.gender_identity === 'man'}
                         />
                         </div>
 
@@ -126,9 +125,9 @@ const Onboarding = () => {
                             id="woman-gender-interest"
                             type="radio"
                             name="gender_interest"
-                            value="man"
+                            value="woman"
                             onChange={handleChange}
-                            checked={formData.gender_interest === 'man'}
+                            checked={formData.gender_interest === 'woman'}
                         />
                         <label htmlFor='man-gender-interest'>Supporter</label>
                         <input
@@ -137,7 +136,7 @@ const Onboarding = () => {
                             name="gender_interest"
                             value="man"
                             onChange={handleChange}
-                            checked={formData.gender_interest === 'woman'}
+                            checked={formData.gender_interest === 'man'}
                         />
                         </div>
 
