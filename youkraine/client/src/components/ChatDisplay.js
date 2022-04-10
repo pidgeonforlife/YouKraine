@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useEffect } from 'react'
 import Chat from './Chat'
 import ChatInput from './ChatInput'
 import { useState, useEffect } from 'react'
