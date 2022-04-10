@@ -14,10 +14,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// Default
 app.get('/', (req, res) => {
   res.json('Hello to my app!')
 })
 
+// Sign up to the database
 app.post('/signup', async (req, res) => {
   const client = new MongoClient(URI)
   const { email, password } = req.body
@@ -54,8 +56,9 @@ app.post('/signup', async (req, res) => {
 
   } catch (err) {
     console.log(err)
+  } finally {
+    await client.close()
   }
-
 })
 
 app.post('/login', async (req, res) => {
@@ -80,6 +83,8 @@ app.post('/login', async (req, res) => {
     res.status(400).send('Invalid Credentials')
   } catch (err) {
     console.log(err)
+  } finally {
+    await client.close()
   }
 })
 
@@ -123,7 +128,6 @@ app.get('/users', async (req, res) => {
         ]
       const foundUsers = await users.aggregate(pipeline).toArray()
       res.send(foundUsers)
-
   } finally {
     await client.close()
   }
@@ -180,7 +184,7 @@ app.put('/user', async (req, res) => {
 
 })
 
-app.put('/addmatch', (req, res) => {
+app.put('/addmatch', async (req, res) => {
   const client = new MongoClient(URI)
   const { userId, matchedUserId } = req.body
 
@@ -220,7 +224,7 @@ app.get('/messages', async (req, res)=> {
   }
 })
 
-app.post('message', async (req, res) => {
+app.post('/message', async (req, res) => {
   const client = new MongoClient(URI)
   const message = req.body.message
 

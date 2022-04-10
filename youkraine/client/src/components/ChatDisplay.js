@@ -14,7 +14,7 @@ const ChatDisplay = ({ user, clickedUser }) => {
 
     try {
       const response = await axios.get('http://localhost:8000/messages', {
-        params: {userId: userId, correspondingUserId: clickedUserId }
+        params: { userId: userId, correspondingUserId: clickedUserId }
       })
       setUsersMessages(response.data)
     }
@@ -24,10 +24,9 @@ const ChatDisplay = ({ user, clickedUser }) => {
   }
 
   const getClickedUsersMessages = async () => {
-
     try {
       const response = await axios.get('http://localhost:8000/messages', {
-        params: {userId: clickedUserId, correspondingUserId: userId }
+        params: { userId: clickedUserId, correspondingUserId: userId }
       })
       setClickedUsersMessages(response.data)
     }
@@ -36,17 +35,10 @@ const ChatDisplay = ({ user, clickedUser }) => {
     }
   }
 
-
   useEffect(() => {
     getUsersMessages()
     getClickedUsersMessages()
   }, [])
-  
-  useEffect(() => {
-  if (user) {
-    getGenderedUsers()
-  }
-  }, [user])
 
   const messages = []
 
@@ -68,13 +60,13 @@ const ChatDisplay = ({ user, clickedUser }) => {
     messages.push(formattedMessage)
   })
 
-  const descendingOrderMessages = messages?.sort((a,b) => a.timestamp.localeCompare(b.timestamp))
+  const descendingOrderMessages = messages?.sort((a, b) => a.timestamp.localeCompare(b.timestamp))
 
   return (
     <>
-      <Chat descendingOrderMessages={descendingOrderMessages}/>
-      <ChatInput 
-        user={user} 
+      <Chat descendingOrderMessages={descendingOrderMessages} />
+      <ChatInput
+        user={user}
         clickedUser={clickedUser}
         getUsersMessages={getUsersMessages}
         getClickedUsersMessages={getClickedUsersMessages} />
