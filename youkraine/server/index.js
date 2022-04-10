@@ -1,5 +1,5 @@
-const config = require('config') 
-const express = require('express') 
+const config = require('config')
+const express = require('express')
 const { MongoClient } = require('mongodb')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
@@ -82,6 +82,49 @@ app.post('/login', async (req, res) => {
     console.log(err)
   }
 })
+
+
+app.get('/user', async (req, res) => {
+  const client = new MongoClient(URI)
+  const userId = req.query.userId
+
+  console.log('userId ', userId)
+
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const users = database.collection('users')
+
+    const query = { user_id: userId }
+    const user = await users.findOne(query)
+    res.send(user)
+  } finally {
+    await client.close()
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/users', async (req, res) => {
   const client = new MongoClient(URI)
