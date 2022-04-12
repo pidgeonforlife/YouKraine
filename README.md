@@ -1,4 +1,4 @@
-# YHacks
+# YouKraine
 :world_map: MERN Stack + ML hackathon project that has won for audience favorite award at YHack2022
 ## 💡 INSPIRATION 💡
 Today, Ukraine is on the front lines of a renewed conflict with Russia. Russia's recent full-scale invasion of Ukraine has created more than 4.3 million refugees and displaced another 6.5 million citizens in the past 6 weeks according to the United Nations. Humanitarian aid organizations make trips into war-torn parts of Ukraine daily, but citizens are often unaware of their locations. Moreover, those fleeing the country into surrounding European countries don't know where they can stay. By connecting refugees with those willing to offer support and providing location data for humanitarian aid, YOUkraine hopes to support those unjustly suffering in Ukraine.  
