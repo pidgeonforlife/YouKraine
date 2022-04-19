@@ -8,7 +8,7 @@ Connects refugees and support/humanitarian aid groups in Ukraine.
 
 You can sign up on the app and declare yourself as either a refugee or supporter and connect with each other directly. Refugees will get tailored recommendations for places to stay, which are offered by supporters, based on family size and the desired country. Refugees will also be able to access a map to view the locations of humanitarian relief organizations such as UN Refugee Agency, Red Cross, Doctors Without Borders, Central Kitchen and many more.  
 
-##🛠️ HOW WE BUILT IT🛠️
+## 🛠️ HOW WE BUILT IT🛠️
 Tech Stack: MERN (Mongodb, Express.js, React.js, Node.js)
 
 We used React (JS), Framer-motion, Axios, Bcrypt, uuid, and react-tinder to create a visually pleasing and accessible way for users to communicate.
@@ -17,7 +17,7 @@ For live chat and to store user data, we took advantage of MongoDB, express.js, 
 
 For the recommendation feature, we used Pandas, Numpy and Seaborn to preprocess our data. We trained our tf-idf model using Sklearn on 3000 different users.
 
-##😣  CHALLENGES WE RAN INTO 😣
+## 😣  CHALLENGES WE RAN INTO 😣
 
 - **3 person team** that started **late**, doesn't get the early worm :(
 - It was the **first time** anyone on the team has worked with **MERN stack** (took a lil'figuring out, but it works!)
